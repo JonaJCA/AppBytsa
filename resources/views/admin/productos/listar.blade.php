@@ -20,11 +20,12 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Relación de Productos</h3>
+                        <h3 class="card-title">Relación de Productos</h3><br> 
+                        <hr>
                         <select onChange="imprimir_reporte_cate();" for="cate_id" name="cate_id" id="cate_id"  class="form-control col-md-3 col-sm-6 col-xs-6">   
                             <option class='btn-danger' value="Seleccione para exportar..">Seleccione para exportar..</option>
                                 @foreach($cate as $catego)                                               
-                                    <option class="btn-danger" value="{{route( 'admin.productos.reportes.productoxcategoria', ['categoriaId' => $catego->id])}}">
+                                    <option class="btn-primary" value="{{route( 'admin.productos.reportes.productoxcategoria', ['categoriaId' => $catego->id])}}">
                                     {{$catego->id}} - {{$catego->nombre_cate}}
                                     </option>
                                 @endforeach
@@ -38,7 +39,6 @@
                                     <th>ID</th>
                                     <th>Nombre</th>
                                     <th>Caracteristica</th>
-                                    <th>Marca</th>
                                     <th>Precio</th>
                                     <th>Categoría</th>
                                     <th>Actualizado al</th>
@@ -48,15 +48,46 @@
                             <tbody>
                                @foreach ($productos as $producto)
                                 <tr>
-                                    <td>PRO-{{$producto->id}}</td>
+                                    <td>PROD-{{$producto->id}}</td>
                                     <td>{{$producto->nombre_produ}}</td>
                                     <td>{{$producto->caracteristica_produ}}</td>
-                                    <td>{{$producto->marca_producto}}</td>
                                     <td>S/ {{$producto->costo_producto}}</td>
                                     <td>{{$producto->cate->nombre_cate}}</td>
                                     <td>{{$producto->updated_at}}</td>                           
                                     <td class="btn-group">
-                                        <button type="button" class="btn btn-info redondo mr-3"><i class="fas fa-solid fa-eye"></i>
+                                        <button type="button" class="btn btn-info redondo mr-3" onclick='Swal.fire({
+                                      title:"<h3><b>Consulta Detalles</b></h3>", 
+                                      html:`<div class="box-body col-md-12" style="zoom: 95%;">
+                                              <div class="form-group table-responsive" style="font-size: 15px;">
+                                                <center>
+                                                  <table class="table table-bordered table-striped">
+                                                    <tr>
+                                                      <td><h4><b>Descripción:</b></h4></td>
+                                                      <td>{{$producto->nombre_produ}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><h4><b>Caracteristica:</b></h4></td>
+                                                      <td>{{$producto->caracteristica_produ}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><h4><b>Marca:</b></h4></td>
+                                                      <td>{{$producto->marca_producto}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><h4><b>Costo sin igv:</b></h4></td>
+                                                      <td>{{$producto->costo_producto}}</td>
+                                                    </tr>
+                                                    <tr>
+                                                      <td><h4><b>Categoria:</b></h4></td>
+                                                      <td>{{$producto->cate->nombre_cate}}</td>
+                                                    </tr>                            
+                                                  </table>                                                  
+                                                </center>
+                                              </div>
+                                            </div>`,
+                                      showCloseButton:true, focusConfirm:false, showConfirmButton:false, width: "100%"
+                                    })'
+                                    ><i class="fas fa-solid fa-eye"></i>
                                         </button>
                                         <button type="button" class="btn btn-warning mr-3" data-toggle="modal" data-target="#modal-update-producto-{{$producto->id}}">
                                          <i class="fas fa-solid fa-pen"></i>
@@ -94,6 +125,7 @@
     <script type="text/javascript">
         $(document).ready(function () {
           $('#productos').DataTable( {
+            "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
             "order": [[ 2, "desc" ]],           
              "scrollX": true,
             "language": {
@@ -140,9 +172,7 @@
 });
 </script>
 
-
-
-<script type="text/javascript">
+ <script type="text/javascript">
     function imprimir_reporte_cate(){
       for (var i = 0 ; i < cate_id.length; i++) {
          cate_id[i].addEventListener('change' , imprimir_reporte_cate , false ) ; 
@@ -157,8 +187,7 @@
 
       }
     }
-</script>
-
+  </script>
     
 
 @stop

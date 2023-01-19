@@ -24,7 +24,7 @@
                 </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="colaboradores" class="table table-bordered table-striped display responsive no-wrap" width="100%">
+                <table id="colaboradores" class="table table-bordered table-striped display" width="100%">
                     <thead style="zoom: 80%;">
                         <tr>
                             <th>ID</th>
@@ -142,26 +142,22 @@
 @endsection
 
 @section('js')
-   <script>
-$(document).ready(function() {
-    $('#colaboradores').DataTable( {
-        "order": [[ 3, "desc" ]],
-        responsive: true,
-        "language": {
-      	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
-   		},   		
-    } );
-} );
-
-
-</script> 
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script> 
+    <script  type="text/javascript">
+        $(document).ready(function() {
+            $('#colaboradores').DataTable( {
+                "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
+                "order": [[ 3, "desc" ]],
+                "scrollX": true,
+                "language": {
+              	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
+           		},   		
+            } );
+        } );
+    </script> 
 
-
-
-    
 @if(session('eliminar')== 'ok')
     <script>
         Swal.fire(

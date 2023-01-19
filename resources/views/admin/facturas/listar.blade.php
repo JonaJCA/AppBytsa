@@ -3,8 +3,7 @@
 @section('title', 'Facturación')
 @section('css')
     
-     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css">
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css">
+     
 @stop
 
 
@@ -25,7 +24,7 @@
                 </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="facturas" class="table table-bordered table-striped display responsive no-wrap" width="100%" style="zoom: 85%;">
+                <table id="facturas" class="table table-bordered table-striped display" width="100%" style="zoom: 85%;">
                     <thead>
                         <tr>
                             <th>Nº Factura</th>
@@ -158,23 +157,24 @@
 @endsection
 
 @section('js')
-   <script>
-$(document).ready(function() {
-    $('#facturas').DataTable( {
-        "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
-        "order": [[ 0, "desc" ]],
-        responsive: true,
-        "language": {
-      	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
-   		},   		
-    } );
-} );
-
-
-</script>
 
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.js"></script>
+   
+   <script>
+        $(document).ready(function() {
+            $('#facturas').DataTable( {
+                "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
+                "order": [[ 0, "desc" ]],
+                "scrollX": true,
+                "language": {
+              	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
+           		},   		
+            } );
+        } );
+    </script>
+
+
 
 @if(session('eliminar')== 'ok')
     <script>

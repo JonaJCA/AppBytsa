@@ -21,11 +21,11 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Relación de Proveedores</h3>
-                        <a href="" type="submit" style="position: absolute; top: 3px; right: 20px; cursor: pointer; outline: none;" class="btn btn-primary btn-sm">Listado PDF</a>
+                        <a href="{{ route('admin.proveedores.reportes.listageneral')}}" type="submit" style="position: absolute; top: 3px; right: 20px; cursor: pointer; outline: none;" class="btn btn-primary btn-sm">Listado PDF</a>
                     </div>
                 <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="proveedores" class="table table-bordered table-striped display responsive no-wrap" width="100%">
+                        <table id="proveedores" class="table table-bordered table-striped display " width="100%">
                             <thead>
                                 <tr>
                                     <th>Código</th>
@@ -124,8 +124,9 @@
    <script>
         $(document).ready(function() {
             $('#proveedores').DataTable( {
+                "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
                 "order": [[ 1, "desc" ]],
-                responsive: true,
+                "scrollX": true,
                 "language": {
               	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json",
            		},   		

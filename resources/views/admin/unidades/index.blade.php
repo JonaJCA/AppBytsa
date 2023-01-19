@@ -2,8 +2,7 @@
 
 @section('title', 'Unidades')
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/2.2.3/css/dataTables.responsive.css">
+    
 	
 @stop
 
@@ -27,7 +26,7 @@
                 </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="unidades" class="table table-bordered table-striped display responsive no-wrap" width="100%">
+                <table id="unidades" class="table table-bordered table-striped display" width="100%">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -68,15 +67,15 @@
                                         </div>`, 
                                   showCloseButton:true, focusConfirm:false, showConfirmButton:false, width: "80%"
                                 })'
-                                >Ver
+                                ><i class="fas fa-solid fa-eye"></i>
                             </button>
                              <button type="button" class="btn btn-warning mr-3" data-toggle="modal" data-target="#modal-update-category-{{$unidad->id}}">
-                             Editar
+                             <i class="fas fa-solid fa-pen"></i>
                              </button>
                              <form action="{{route('admin.unidades.delete', $unidad->id)}}" class="form-eliminas" method="POST">
                                 {{ csrf_field() }}
                                 @method('DELETE')
-                                <button class="btn btn-danger">Eliminar</button>
+                                <button class="btn btn-danger"><i class="fas fa-solid fa-trash"></i></button>
                              </form>
                             </td>
                         </tr>   
@@ -136,8 +135,9 @@
    <script>
 $(document).ready(function() {
     $('#unidades').DataTable( {
-        "order": [[ 3, "desc" ]],
-        responsive: true,
+        "lengthMenu":[[5,10,50,-1],[5,10,50, "All"]],
+        "order": [[ 1, "desc" ]],
+        "scrollX": true,
         "language": {
       	"url": "//cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json"
    		},   		

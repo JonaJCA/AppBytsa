@@ -23,7 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/admin/categorias', 'Admin\CategoriasController@index')->name('admin.categorias');
 Route::post('/admin/categorias/store', 'Admin\CategoriasController@store')->name('admin.categorias.store');
-Route::post('/admin/categorias/{categoriaId}/show', 'Admin\CategoriasController@show')->name('admin.categorias.show');
+Route::get('/admin/categorias/listar', 'Admin\CategoriasController@listar')->name('admin.categorias.listar');
 Route::post('/admin/categorias/{categoriaId}/update', 'Admin\CategoriasController@update')->name('admin.categorias.update');
 Route::delete('/admin/categorias/{categoriaId}/delete', 'Admin\CategoriasController@delete')->name('admin.categorias.delete');
 
@@ -54,6 +54,8 @@ Route::get('admin/colaboradores/reportes/pdf', [App\Http\Controllers\Admin\Colab
 Route::get('admin/colaboradores/{colaboradorId}/fichapersonal', [App\Http\Controllers\Admin\ColaboradoresController::class,'fichaPDF'])->name('admin.colaboradores.reportes.fichapersonal');
 
 Route::get('admin/productos/{categoriaId}/productoxcategoria', [App\Http\Controllers\Admin\ProductosController::class,'productoxcategoria'])->name('admin.productos.reportes.productoxcategoria');
+
+Route::get('admin/proveedores/reportes/listageneral', [App\Http\Controllers\Admin\ProveedoresController::class,'relaPDF'])->name('admin.proveedores.reportes.listageneral');
 
 //--Fin Reportes--//
 

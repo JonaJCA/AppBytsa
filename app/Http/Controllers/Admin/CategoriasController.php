@@ -28,6 +28,11 @@ class CategoriasController extends Controller
 
     }
 
+    public function listar(){
+        $categorias = Categoria::all();
+        return view ('admin.categorias.listar', ['categorias' => $categorias]);
+    }
+
     public function show($categoriaId){
         $categoria = Categoria::findOrFail($categoriaId);
         return view('categorias.show', compact('categoria'));

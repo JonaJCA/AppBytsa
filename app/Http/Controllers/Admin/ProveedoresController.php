@@ -24,6 +24,11 @@ class ProveedoresController extends Controller
         return view ('admin.proveedores.index', ['proveedores' => $proveedores], compact("departamentos"), compact("provincias"));
     }
 
+    public function RelaPDF(){
+        $proveedores = Proveedor::all()->sortByDesc('razon_social');
+        return view ('admin.proveedores.reportes.listageneral');
+    }
+
     /**
      * Show the form for creating a new resource.
      *

@@ -315,7 +315,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Listar',
-                    'url'  => '/admin/categorias',
+                    'url'  => '/admin/categorias/listar',
                     'icon' => 'fas fa-fw fa-list-ol',
                 ],
                          ],
